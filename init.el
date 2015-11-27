@@ -245,7 +245,7 @@ layers configuration. You are free to put any user code."
   (org-babel-load-file (concat user-emacs-directory "config.org"))
 
   ;; Shortcut to the config file
-  (spacemacs/set-leader-keys  "oc" 'find-file "~/.spacemacs.d/config.org")
+  (spacemacs/set-leader-keys  "oc" (lambda() (interactive)(find-file "~/.spacemacs.d/config.org")))
 
 
 )
