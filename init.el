@@ -241,7 +241,7 @@ user code here.  The exception is org related code, which should be placed in
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
-  ;;; Load the config
+  ;; Load the config
   (org-babel-load-file (concat user-emacs-directory "config.org"))
 
   ;; Shortcut to the config file
