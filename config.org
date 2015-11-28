@@ -303,7 +303,7 @@ Display date/time and remove cruft in the spaceline.
 
     #+begin_src emacs-lisp
     (setq eshell-aliases-file (concat user-emacs-directory ".eshell-aliases"))
-    (bind-key "C-x m" 'ansi-term)
+    (bind-key "C-x m" 'multi-term)
     #+end_src
 
 * Packages
