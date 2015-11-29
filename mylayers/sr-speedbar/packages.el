@@ -49,7 +49,7 @@
         (interactive)
         (cond ((sr-speedbar-exist-p) (kill-buffer speedbar-buffer))
               (t (sr-speedbar-open) (linum-mode -1) (speedbar-refresh)))))
-    (spacemacs/set-leader-keys "oe" 'spacemacs/sr-speedbar-show-or-hide)
+    (spacemacs/set-leader-keys "os" 'spacemacs/sr-speedbar-show-or-hide)
     ))
 
 ;; Often the body of an initialize function uses `use-package'
