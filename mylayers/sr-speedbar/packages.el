@@ -43,11 +43,13 @@
     ;; Add markdown support
     (setq speedbar-directory-unshown-regexp "^\\(CVS\\|RCS\\|SCCS\\|\\.\\.*$\\)\\'")
     (speedbar-add-supported-extension ".md")
-    ;; (evilify-map speedbar-mode-map)
-    (evilified-state-evilify-map speedbar-mode-map)
-
-
-
+    ;; toggle function
+    (defun sr-speedbar/post-init-sr-speedbar ()
+      (defun spacemacs/sr-speedbar-show-or-hide ()
+        (interactive)
+        (cond ((sr-speedbar-exist-p) (kill-buffer speedbar-buffer))
+              (t (sr-speedbar-open) (linum-mode -1) (speedbar-refresh)))))
+    (spacemacs/set-leader-keys "oe" 'spacemacs/sr-speedbar-show-or-hide)
     ))
 
 ;; Often the body of an initialize function uses `use-package'
