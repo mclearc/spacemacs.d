@@ -30,7 +30,7 @@ brew install emacs-mac --with-ctags --with-dbus --with-glib --with-gnutls --with
 #+BEGIN_SRC emacs-lisp
   (setq initial-frame-alist
         '(
-          (width . 102) ; character
+          (width . 112) ; character
           (height . 54) ; lines
           ))
   (setq frame-title-format
