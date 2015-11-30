@@ -235,13 +235,14 @@ customize settings in [[file:init.el][init.el]].
 #+BEGIN_SRC emacs-lisp
   (add-hook 'text-mode-hook
             '(lambda()
-               (turn-on-auto-fill) (set-fill-column 80)))
+               (turn-on-auto-fill) (set-fill-column 80) (flyspell-mode 1)))
   (add-hook 'org-mode-hook
             '(lambda()
-               (turn-on-auto-fill) (set-fill-column 80) (centered-cursor-mode)))
+               (turn-on-auto-fill) (set-fill-column 80) (centered-cursor-mode) (flyspell-mode 1)))
   (add-hook 'markdown-mode-hook
             '(lambda()
-               (turn-on-auto-fill) (set-fill-column 80) (centered-cursor-mode)))
+               (turn-on-auto-fill) (set-fill-column 80) (centered-cursor-mode) (flyspell-mode 1) (pandoc-mode)))
+  (add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
 
   ;; visual line mode
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
