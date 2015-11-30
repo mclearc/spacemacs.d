@@ -351,13 +351,13 @@ Display date/time and remove cruft in the spaceline.
   ;; (evil-leader/set-leader "oe" 'sr-speedbar-toggle)
   ;; (evil-leader/set-key "os" 'sr-speedbar-toggle)
   ;; (bind-key "s-e" 'sb-expand-current-file)
-  ;; (spacemacs/set-leader-keys "oe" 'sr-speedbar-toggle)
+  (spacemacs/set-leader-keys "oe" 'sr-speedbar-toggle)
 #+END_SRC
 
 ** Helm-BibTex
 #+BEGIN_SRC emacs-lisp
   ;; Helm-Bibtex ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Set global shortcut for calling helm-bibtex
-  ;; (global-set-key (kbd "C-c r") 'helm-bibtex)
+  (global-set-key (kbd "C-c r") 'helm-bibtex)
   (spacemacs/set-leader-keys "ox" 'helm-bibtex)
 #+END_SRC
