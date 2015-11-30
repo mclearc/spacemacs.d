@@ -312,11 +312,21 @@ Display date/time and remove cruft in the spaceline.
 #+BEGIN_SRC emacs-lisp
   ;; deft settings
   (setq deft-extensions '("org" "md" "txt" "tex"))
-  (setq deft-directory "~/Dropbox/Notes")
-  (setq deft-recursive t)
+  (setq deft-directory "~/Dropbox/Notes"
+        deft-use-filter-string-for-filename t ;; use filter string as filename
+        deft-org-mode-title-prefix t ;; add #+TITLE prefix
+        deft-recursive t  ;; search recursively in folders
+   )
 #+END_SRC
 ** Speedbar
 #+BEGIN_SRC emacs-lisp
+  ;; toggle function
+  (defun sr-speedbar/post-init-sr-speedbar ()
+      (defun spacemacs/sr-speedbar-show-or-hide ()
+      (interactive)
+      (cond ((sr-speedbar-exist-p) (kill-buffer speedbar-buffer))
+              (t (sr-speedbar-open) (linum-mode -1) (speedbar-refresh)))))
+  (spacemacs/set-leader-keys "os" 'spacemacs/sr-speedbar-show-or-hide)
   ;; Auto expand
   (defun sb-expand-current-file ()
     "Expand current file in speedbar buffer"
