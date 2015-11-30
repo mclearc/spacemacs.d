@@ -61,16 +61,6 @@ brew install emacs-mac --with-ctags --with-dbus --with-glib --with-gnutls --with
   (prefer-coding-system 'utf-8) ; with sugar on top
 #+END_SRC
 
-** OTHER
-#+BEGIN_SRC emacs-lisp
-  (setq-default vc-follow-symlinks t)
-  (setq-default git-magit-status-fullscreen nil)
-
-  ;; Reload config
-  (global-set-key (kbd "C-c i")
-  (lambda() (interactive)(org-babel-load-file "~/.spacemacs.d/config.org")))
-#+END_SRC
-
 ** Line Numbers
 Let's make the line numbers look good and highlighted.
 
@@ -219,7 +209,17 @@ Let's make the line numbers look good and highlighted.
     (setq doc-view-continuous t)
 
 #+END_SRC
-** Other
+
+** OTHER
+#+BEGIN_SRC emacs-lisp
+  (setq-default vc-follow-symlinks t)
+  (setq-default git-magit-status-fullscreen nil)
+  (setq diff-refine-hunk)
+
+  ;; Reload config
+  (global-set-key (kbd "C-c i")
+  (lambda() (interactive)(org-babel-load-file "~/.spacemacs.d/config.org")))
+#+END_SRC
 
 * Customize settings
 
