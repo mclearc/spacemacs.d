@@ -24,13 +24,13 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
-     ;; better-defaults
      deft
      emacs-lisp
      helm-bibtex
      html
      (git :variables
           git-gutter-use-fringe t)
+     latex
      markdown
      org
      osx
@@ -43,7 +43,9 @@ values."
             shell-default-shell 'multi-term
             shell-default-position 'bottom)
      shell-scripts
-     spell-checking
+     spacemacs-layouts
+     (spell-checking :variables
+                     spell-checking-enable-by-default nil)
      sr-speedbar
      syntax-checking
      version-control
