@@ -319,42 +319,19 @@ Display date/time and remove cruft in the spaceline.
    )
 #+END_SRC
 ** Speedbar
+[[file:mylayers/sr-speedbar/packages.el::;;;%20packages.el%20---%20sr-speedbar%20Layer%20packages%20File%20for%20Spacemacs][Speedbar package settings]]
+
 #+BEGIN_SRC emacs-lisp
-  ;; toggle function
-  (defun sr-speedbar/post-init-sr-speedbar ()
-      (defun spacemacs/sr-speedbar-show-or-hide ()
-      (interactive)
-      (cond ((sr-speedbar-exist-p) (kill-buffer speedbar-buffer))
-              (t (sr-speedbar-open) (linum-mode -1) (speedbar-refresh)))))
-  (spacemacs/set-leader-keys "os" 'spacemacs/sr-speedbar-show-or-hide)
-  ;; Auto expand
-  (defun sb-expand-current-file ()
-    "Expand current file in speedbar buffer"
-    (interactive)
-    (setq current-file (buffer-file-name))
-    (sr-speedbar-toggle)
-    ;; (sr-speedbar-select-window)
-    ;; (switch-to-buffer-other-frame "*SPEEDBAR*")
-    (speedbar-find-selected-file current-file)
-    (speedbar-toggle-line-expansion))
-  ;; Switch to window
-  (defun speedbar-edit-line-and-switch-to-window ()
-    (interactive)
-    (speedbar-edit-line)
-    (other-window 1))
-  ;; More familiar keymap settings.
-  (add-hook 'speedbar-reconfigure-keymaps-hook
-            '(lambda ()
-               (define-key speedbar-mode-map [tab] 'speedbar-toggle-line-expansion)
-               (define-key speedbar-mode-map [return] 'speedbar-edit-line-and-switch-to-window)))
+
   ;; keybinding
-  ;; (evil-leader/set-leader "oe" 'sr-speedbar-toggle)
-  ;; (evil-leader/set-key "os" 'sr-speedbar-toggle)
+   (spacemacs/set-leader-keys "os" 'sr-speedbar-toggle)
   ;; (bind-key "s-e" 'sb-expand-current-file)
-  (spacemacs/set-leader-keys "oe" 'sr-speedbar-toggle)
+
+
 #+END_SRC
 
 ** Helm-BibTex
+[[file:mylayers/helm-bibtex/packages.el::;;;%20packages.el%20---%20helm-bibtex%20Layer%20packages%20File%20for%20Spacemacs][Helm-BibTex Package Settings]]
 #+BEGIN_SRC emacs-lisp
   ;; Helm-Bibtex ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Set global shortcut for calling helm-bibtex
