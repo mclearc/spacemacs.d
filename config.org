@@ -248,6 +248,81 @@ customize settings in [[file:init.el][init.el]].
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 #+END_SRC
 
+* Org Mode
+Settings for org mode
+
+#+BEGIN_SRC emacs-lisp
+
+  ;;; ORG MODE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    (setq default-major-mode 'org-mode) ;; Default to Org Mode
+    (require 'org-inlinetask)  ;; allow inline todos
+    (setq org-hide-emphasis-markers nil)  ;; hide markers
+    (setq org-pretty-entities t) ;; make latex look good
+    (spacemacs/set-leader-keys "ob" 'clone-indirect-buffer-other-window) ;; set up outline and doc view
+
+    ;; imenu and org settings
+    (add-hook 'org-mode-hook
+              (lambda () (imenu-add-to-menubar "Imenu")))
+    (setq org-imenu-depth 4)
+    (setq imenu-auto-rescan t)
+    ;;(setq org-latex-pdf-process '("latexmk -f -xelatex %f"))
+    ;; go to headings in org
+    ;; (setq org-goto-interface 'outline
+    ;;       org-goto-max-level 10)
+
+        ;This function works between buffer and it's clone.
+    (defun my/goto-same-spot-in-other-buffer ()
+    "Go to the same location in the other buffer. Useful for when you have cloned indirect buffers"
+    (interactive)
+    (let ((my/goto-current-point (point)))
+        (other-window 1)
+        (goto-char my/goto-current-point)
+        (when (invisible-p (point))
+            (org-reveal))))
+
+    ;This function is a clone-to-buffer jump only:
+    ; It does find the other buffer first thou instead of just jumping to the other
+    ; window as does the function above.
+    (defun my/jump-to-point-and-show ()
+    "Switch to a cloned buffer's base buffer and move point to the
+    cursor position in the clone."
+    (interactive)
+    (let ((buf (buffer-base-buffer)))
+        (unless buf
+        (error "You need to be in a cloned buffer!"))
+        (let ((pos (point))
+            (win (car (get-buffer-window-list buf))))
+        (if win
+            (select-window win)
+            (other-window 1)
+            (switch-to-buffer buf))
+        (goto-char pos)
+        (when (invisible-p (point))
+            (show-branches)))))
+
+
+    (global-set-key (kbd "<s-mouse-1>") 'my/goto-same-spot-in-other-buffer)
+    (global-set-key (kbd "s-m") 'my/goto-same-spot-in-other-buffer)
+    (global-set-key (kbd "<C-s-mouse-1>") 'my/jump-to-point-and-show)
+    (global-set-key (kbd "C-s-m") 'my/jump-to-point-and-show)
+
+  ;;; ORG LATEX;;;;;;;;;;;;;
+    (setq org-latex-pdf-process (list "latexmk -pdflatex=xelatex -f -pdf %f"))
+    ;; latex config
+    (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+  ;;; ORG PANDOC
+    (evil-leader/set-key "op" 'org-pandoc-export-to-latex-pdf-and-open)
+    ;; default options for all output formats
+    (setq org-pandoc-options '((standalone . t)))
+    ;; cancel above settings only for 'docx' format
+    (setq org-pandoc-options-for-docx '((standalone . nil)))
+    ;; special settings for beamer-pdf and latex-pdf exporters
+    (setq org-pandoc-options-for-beamer-pdf '((latex-engine . "xelatex")))
+    (setq org-pandoc-options-for-latex-pdf '((latex-engine . "xelatex")))
+
+
+#+END_SRC
 * Modeline
 Display date/time and remove cruft in the spaceline.
 
